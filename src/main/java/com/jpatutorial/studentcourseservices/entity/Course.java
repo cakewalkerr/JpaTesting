@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Course {
 	@Id
@@ -17,13 +19,15 @@ public class Course {
 	private int id;
 	private String name;
 	private String description;
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> steps;
-	@ElementCollection(targetClass = String.class)
+	@ManyToMany(mappedBy = "courses")
+	// @JsonBackReference
+	@JsonIgnoreProperties("courses")
 	private Set<Student> student;
 
-	protected Course() {
-
+	public Course() {
+		// this.student = new HashSet<>();
 	}
 
 	public Course(String name, String description, List<String> steps) {
@@ -73,7 +77,6 @@ public class Course {
 		this.steps = steps;
 	}
 
-	@ManyToMany(mappedBy = "courses")
 	public Set<Student> getStudent() {
 		return student;
 	}

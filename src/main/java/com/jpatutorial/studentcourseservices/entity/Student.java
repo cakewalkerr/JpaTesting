@@ -3,7 +3,6 @@ package com.jpatutorial.studentcourseservices.entity;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Student {
 	@Id
@@ -19,11 +20,14 @@ public class Student {
 	private int id;
 	private String name;
 	private String description;
-	@ElementCollection(targetClass = String.class)
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "student_course", joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id"))
+	// @JsonManagedReference
+	@JsonIgnoreProperties("student")
 	private Set<Course> courses;
 
-	protected Student() {
-
+	public Student() {
+		// courses = new HashSet<>();
 	}
 
 	public Student(String name, String description) {
@@ -63,8 +67,6 @@ public class Student {
 		this.description = description;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "student_course", joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id"))
 	public Set<Course> getCourses() {
 		return courses;
 	}

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jpatutorial.studentcourseservices.entity.Course;
 import com.jpatutorial.studentcourseservices.entity.Student;
+import com.jpatutorial.studentcourseservices.repository.StudentRepository;
 import com.jpatutorial.studentcourseservices.service.StudentCourseService;
 
 @RestController
@@ -19,8 +20,12 @@ public class StudentCourseController {
 	@Autowired
 	StudentCourseService studentCourseService;
 
+	@Autowired
+	StudentRepository studentRepository;
+
 	@GetMapping("/students")
 	public List<Student> getAllStudents() {
+		// return studentRepository.findAll();
 		return studentCourseService.getAllStudents();
 	}
 

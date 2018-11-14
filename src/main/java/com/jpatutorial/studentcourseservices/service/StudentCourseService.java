@@ -3,6 +3,8 @@ package com.jpatutorial.studentcourseservices.service;
 import java.util.List;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +14,7 @@ import com.jpatutorial.studentcourseservices.repository.CourseRepository;
 import com.jpatutorial.studentcourseservices.repository.StudentRepository;
 
 @Component
+@Transactional
 public class StudentCourseService {
 
 	@Autowired
