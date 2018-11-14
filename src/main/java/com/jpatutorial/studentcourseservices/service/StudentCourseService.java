@@ -1,5 +1,6 @@
 package com.jpatutorial.studentcourseservices.service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -49,11 +50,30 @@ public class StudentCourseService {
 	}
 
 	public void assignCourseToStudent(int studentId, int courseId) {
-		Course course = courseRepository.findById(studentId);
-		Student student = studentRepository.findById(courseId);
+		Course course = courseRepository.findById(courseId);
+		Student student = studentRepository.findById(studentId);
 
 		student.getCourses().add(course);
 		studentRepository.save(student);
+
+	}
+
+	public String assignCourseToStudentByName(int studentId, String courseName) {
+		Course course = courseRepository.findByName(courseName);
+		Student student = studentRepository.findById(studentId);
+
+		Set<Course> newCourseList = new HashSet<Course>() {
+			{
+				addAll(student.getCourses());
+				add(course);
+			}
+		};
+
+		student.setCourses(newCourseList);
+
+		studentRepository.save(student);
+
+		return student.toString();
 
 	}
 }

@@ -40,6 +40,8 @@ public class StudentCourseServicesApplication implements CommandLineRunner {
 				Arrays.asList("Learn Maven", "Import Project", "First Example", "Second Example"));
 		Course course2 = new Course("springMVC", "10 Examples",
 				Arrays.asList("Learn Maven", "Import Project", "First Example", "Second Example"));
+		Course course3 = new Course("java", "0 Examples",
+				Arrays.asList("Learn Maven", "Import Project", "0 Example", "0 Example"));
 
 		Student student1 = new Student("Ranga Karanam", "Hiker, Programmer and Architect");
 		Student student2 = new Student("Panda Pandom", "Biker, Programmer and Joker");
@@ -61,6 +63,7 @@ public class StudentCourseServicesApplication implements CommandLineRunner {
 
 		courseRepository.save(course1);
 		courseRepository.save(course2);
+		courseRepository.save(course3);
 		studentRepository.save(student1);
 		studentRepository.save(student2);
 

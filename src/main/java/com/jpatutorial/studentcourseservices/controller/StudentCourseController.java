@@ -50,4 +50,9 @@ public class StudentCourseController {
 		studentCourseService.assignCourseToStudent(studentId, courseId);
 	}
 
+	@GetMapping("/student/{studentId}/{courseName}")
+	public String assignCourseToStudentByName(@PathVariable int studentId, @PathVariable String courseName) {
+		return studentCourseService.assignCourseToStudentByName(studentId, courseName);
+	}
+
 }
