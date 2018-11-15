@@ -87,6 +87,6 @@ public class Course {
 
 	@Override
 	public String toString() {
-		return String.format("Course [id=%i, name=%s, description=%s, steps=%s]", id, name, description, steps);
+		return String.format("Course [id=%d, name=%s, description=%s, steps=%s]", id, name, description, steps);
 	}
 }

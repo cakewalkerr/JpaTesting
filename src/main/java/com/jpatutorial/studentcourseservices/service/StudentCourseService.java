@@ -49,6 +49,7 @@ public class StudentCourseService {
 
 	}
 
+	// needs fixing
 	public void assignCourseToStudent(int studentId, int courseId) {
 		Course course = courseRepository.findById(courseId);
 		Student student = studentRepository.findById(studentId);

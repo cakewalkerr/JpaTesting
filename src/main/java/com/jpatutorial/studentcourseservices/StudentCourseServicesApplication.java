@@ -67,6 +67,13 @@ public class StudentCourseServicesApplication implements CommandLineRunner {
 		studentRepository.save(student1);
 		studentRepository.save(student2);
 
+		for (Course course : courseRepository.findAll()) {
+			log.info("Course: " + course.toString());
+		}
+		for (Student student : studentRepository.findAll()) {
+			log.info("Student: " + student.toString());
+		}
+
 		// Student student3 = new Student("Key smth", "Boxer, Programmer and
 		// Architect");
 		/*
